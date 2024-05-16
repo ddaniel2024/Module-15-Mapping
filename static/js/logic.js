@@ -11,5 +11,10 @@ url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
 
 d3.json(url).then(function(data) {console.log(data)
 
-    console.log(data.features[0].geometry.coordinates);
+    for (let i=0; i<data.features.length; i++) {
+       lat = data.features[i].geometry.coordinates[0];
+       lng = data.features[i].geometry.coordinates[1]
+       depth = data.features[i].geometry.coordinates[2];;
+    }
+
 });
