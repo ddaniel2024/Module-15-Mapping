@@ -11,10 +11,20 @@ url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
 
 d3.json(url).then(function(data) {console.log(data)
 
-    for (let i=0; i<data.features.length; i++) {
-       lat = data.features[i].geometry.coordinates[0];
-       lng = data.features[i].geometry.coordinates[1]
-       depth = data.features[i].geometry.coordinates[2];;
-    }
+    let markers = []
 
+    for (let i=0; i<data.features.length; i++) {
+        
+        lat = data.features[i].geometry.coordinates[1];
+        lng = data.features[i].geometry.coordinates[0];
+        depth = data.features[i].geometry.coordinates[2];
+        mag = data.features[i].properties.mag;
+
+        L.circle([lat,lng], {
+            radius : mag*10000,
+            fillColor : depth
+        }).addTo(myMap);
+        console.log(mag);
+    };
+    
 });
