@@ -11,19 +11,40 @@ url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
 
 d3.json(url).then(function(data) {console.log(data)
 
-    let markers = []
-
     for (let i=0; i<data.features.length; i++) {
         
-        lat = data.features[i].geometry.coordinates[1];
-        lng = data.features[i].geometry.coordinates[0];
-        depth = data.features[i].geometry.coordinates[2];
-        mag = data.features[i].properties.mag;
-        place = data.features[i].properties.place;
+        let lat = data.features[i].geometry.coordinates[1];
+        let lng = data.features[i].geometry.coordinates[0];
+        let depth = data.features[i].geometry.coordinates[2];
+        let mag = data.features[i].properties.mag;
+        let place = data.features[i].properties.place;
+        let color = ""
+
+        if (depth > 90) {
+            color = "red";
+        }
+        else if (depth > 70) {
+            color = "orange";
+        }
+        else if (depth > 50) {
+            color = "lightorange";
+        }
+        else if (depth > 30) {
+            color = "yellow";
+        }
+        else if (depth > 10) {
+            color = "lightyellow";
+        }
+        else {color = "lime";
+        }
+
+
+
 
         L.circle([lat,lng], {
             radius : mag*10000,
-            fillColor : depth
+            color : color,
+            fillOpacity : 1
         }).bindPopup(`<h3>${place}</h3> <hr> <p>Magnitude: ${mag}</p><p>Depth: ${depth} kilometres</p>`).addTo(myMap);
     };
     
