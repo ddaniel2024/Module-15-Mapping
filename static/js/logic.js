@@ -1,6 +1,6 @@
 let myMap = L.map("map", {
-    center: [0,0],
-    zoom : 2
+    center: [39.8283,-98.5795],
+    zoom : 5
   });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -24,7 +24,7 @@ d3.json(url).then(function(data) {console.log(data)
         L.circle([lat,lng], {
             radius : mag*10000,
             fillColor : depth
-        }).bindPopup(`<h1>${place}</h1> <hr> <h3>Magnitude: ${mag}</h3><h3>Depth: ${depth} metres</h3>`).addTo(myMap);
+        }).bindPopup(`<h3>${place}</h3> <hr> <p>Magnitude: ${mag}</p><p>Depth: ${depth} kilometres</p>`).addTo(myMap);
     };
     
 });
