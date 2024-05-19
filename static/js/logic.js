@@ -21,29 +21,28 @@ d3.json(url).then(function(data) {console.log(data)
         let color = ""
 
         if (depth > 90) {
-            color = "red";
+            color = "#ff5f65";
         }
         else if (depth > 70) {
-            color = "orange";
+            color = "#fca35d";
         }
         else if (depth > 50) {
-            color = "lightorange";
+            color = "#5db72a";
         }
         else if (depth > 30) {
-            color = "yellow";
+            color = "#57db11";
         }
         else if (depth > 10) {
-            color = "lightyellow";
+            color = "#dcf400";
         }
-        else {color = "lime";
+        else {color = "#a3f600";
         }
-
-
-
 
         L.circle([lat,lng], {
             radius : mag*10000,
-            color : color,
+            color : "black",
+            weight : 0.75,
+            fillColor : color,
             fillOpacity : 1
         }).bindPopup(`<h3>${place}</h3> <hr> <p>Magnitude: ${mag}</p><p>Depth: ${depth} kilometres</p>`).addTo(myMap);
     };
