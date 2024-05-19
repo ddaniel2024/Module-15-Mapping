@@ -19,12 +19,12 @@ d3.json(url).then(function(data) {console.log(data)
         lng = data.features[i].geometry.coordinates[0];
         depth = data.features[i].geometry.coordinates[2];
         mag = data.features[i].properties.mag;
+        place = data.features[i].properties.place;
 
         L.circle([lat,lng], {
             radius : mag*10000,
             fillColor : depth
-        }).addTo(myMap);
-        console.log(mag);
+        }).bindPopup(`<h1>${place}</h1> <hr> <h3>Magnitude: ${mag}</h3><h3>Depth: ${depth} metres</h3>`).addTo(myMap);
     };
     
 });
