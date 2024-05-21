@@ -11,6 +11,9 @@ url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
 
 d3.json(url).then(function(data) {console.log(data)
 
+
+
+
     function getColor(value) {
 
         if (value >= 90) {
@@ -34,6 +37,7 @@ d3.json(url).then(function(data) {console.log(data)
 
 
 
+
     for (let i=0; i<data.features.length; i++) {
         
         let lat = data.features[i].geometry.coordinates[1];
@@ -50,6 +54,7 @@ d3.json(url).then(function(data) {console.log(data)
             fillOpacity : 1
         }).bindPopup(`<h3>${place}</h3> <hr> <p>Magnitude: ${mag}</p><p>Depth: ${depth} kilometres</p>`).addTo(myMap);
     };
+
 
 
 
@@ -74,6 +79,7 @@ d3.json(url).then(function(data) {console.log(data)
 
     legend.addTo(myMap);
 
+ 
 
     
 });
