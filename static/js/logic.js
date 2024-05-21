@@ -20,19 +20,19 @@ d3.json(url).then(function(data) {console.log(data)
         let place = data.features[i].properties.place;
         let color = ""
 
-        if (depth > 90) {
+        if (depth >= 90) {
             color = "#ff5f65";
         }
-        else if (depth > 70) {
+        else if (depth >= 70) {
             color = "#fca35d";
         }
-        else if (depth > 50) {
-            color = "#5db72a";
+        else if (depth >= 50) {
+            color = "#fdb72a";
         }
-        else if (depth > 30) {
-            color = "#57db11";
+        else if (depth >= 30) {
+            color = "#f7db11";
         }
-        else if (depth > 10) {
+        else if (depth >= 10) {
             color = "#dcf400";
         }
         else {color = "#a3f600";
@@ -58,8 +58,29 @@ d3.json(url).then(function(data) {console.log(data)
             let depth_categories = [-10,10,30,50,70,90]
 
         for (let i=0; i<depth_categories.length; i++) {
+            
+            let color = ""
+
+            if (depth_categories[i] >= 90) {
+                color = "#ff5f65";
+            }
+            else if (depth_categories[i] >= 70) {
+                color = "#fca35d";
+            }
+            else if (depth_categories[i] >= 50) {
+                color = "#fdb72a";
+            }
+            else if (depth_categories[i] >= 30) {
+                color = "#f7db11";
+            }
+            else if (depth_categories[i] >= 10) {
+                color = "#dcf400";
+            }
+            else {color = "#a3f600";
+            }
+
             div.innerHTML += 
-                '<i></i>' +
+                "<i style=background:"+ color +"></i>" +
                 depth_categories[i] + "-" + depth_categories[i+1] + "<br>";
         };
 
