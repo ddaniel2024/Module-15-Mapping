@@ -11,6 +11,29 @@ url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
 
 d3.json(url).then(function(data) {console.log(data)
 
+    function getColor(value) {
+
+        if (value >= 90) {
+            return "#ff5f65";
+        }
+        else if (value >= 70) {
+            return "#fca35d";
+        }
+        else if (value >= 50) {
+            return "#fdb72a";
+        }
+        else if (value >= 30) {
+            return "#f7db11";
+        }
+        else if (value >= 10) {
+            return "#dcf400";
+        }
+        else {return "#a3f600";
+        }
+    };
+
+
+
     for (let i=0; i<data.features.length; i++) {
         
         let lat = data.features[i].geometry.coordinates[1];
@@ -18,31 +41,12 @@ d3.json(url).then(function(data) {console.log(data)
         let depth = data.features[i].geometry.coordinates[2];
         let mag = data.features[i].properties.mag;
         let place = data.features[i].properties.place;
-        let color = ""
-
-        if (depth >= 90) {
-            color = "#ff5f65";
-        }
-        else if (depth >= 70) {
-            color = "#fca35d";
-        }
-        else if (depth >= 50) {
-            color = "#fdb72a";
-        }
-        else if (depth >= 30) {
-            color = "#f7db11";
-        }
-        else if (depth >= 10) {
-            color = "#dcf400";
-        }
-        else {color = "#a3f600";
-        }
 
         L.circle([lat,lng], {
             radius : mag*10000,
             color : "black",
             weight : 0.75,
-            fillColor : color,
+            fillColor : getColor(depth),
             fillOpacity : 1
         }).bindPopup(`<h3>${place}</h3> <hr> <p>Magnitude: ${mag}</p><p>Depth: ${depth} kilometres</p>`).addTo(myMap);
     };
@@ -58,29 +62,9 @@ d3.json(url).then(function(data) {console.log(data)
             let depth_categories = [-10,10,30,50,70,90]
 
         for (let i=0; i<depth_categories.length; i++) {
-            
-            let color = ""
-
-            if (depth_categories[i] >= 90) {
-                color = "#ff5f65";
-            }
-            else if (depth_categories[i] >= 70) {
-                color = "#fca35d";
-            }
-            else if (depth_categories[i] >= 50) {
-                color = "#fdb72a";
-            }
-            else if (depth_categories[i] >= 30) {
-                color = "#f7db11";
-            }
-            else if (depth_categories[i] >= 10) {
-                color = "#dcf400";
-            }
-            else {color = "#a3f600";
-            }
 
             div.innerHTML += 
-                "<i style=background:"+ color +"></i>" +
+                "<i style=background:"+ getColor(depth_categories[i]) +"></i>" +
                 depth_categories[i] + "-" + depth_categories[i+1] + "<br>";
         };
 
