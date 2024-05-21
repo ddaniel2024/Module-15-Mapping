@@ -54,10 +54,13 @@ d3.json(url).then(function(data) {console.log(data)
     legend.onAdd = function () {
     
         let div = L.DomUtil.create("div", "legend");
-            depth_categories = [-10,10,30,50,70,90]
+            
+            let depth_categories = [-10,10,30,50,70,90]
 
         for (let i=0; i<depth_categories.length; i++) {
-            div.innerHTML += depth_categories[i] + "-" + depth_categories[i+1] + "<br>";
+            div.innerHTML += 
+                '<i></i>' +
+                depth_categories[i] + "-" + depth_categories[i+1] + "<br>";
         };
 
     return div;
