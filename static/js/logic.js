@@ -65,7 +65,8 @@ d3.json(url).then(function(data) {console.log(data)
 
             div.innerHTML += 
                 "<i style=background:"+ getColor(depth_categories[i]) +"></i>" +
-                depth_categories[i] + "-" + depth_categories[i+1] + "<br>";
+                depth_categories[i] + 
+                (depth_categories[i+1] ? "-" + depth_categories[i+1] + "<br>" : "+");
         };
 
     return div;
