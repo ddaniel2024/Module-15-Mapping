@@ -48,14 +48,19 @@ d3.json(url).then(function(data) {console.log(data)
     };
 
 
-    
+
     let legend = L.control({position: 'bottomright'});
 
     legend.onAdd = function () {
     
         let div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "LEGEND";       
-        return div;
+            depth_categories = [10,30,50,70,90]
+
+        for (let i=0; i<depth_categories.length; i++) {
+            div.innerHTML += depth_categories[i] + "<br>";
+        };
+
+    return div;
     };
 
     legend.addTo(myMap);
