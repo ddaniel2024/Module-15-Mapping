@@ -46,5 +46,20 @@ d3.json(url).then(function(data) {console.log(data)
             fillOpacity : 1
         }).bindPopup(`<h3>${place}</h3> <hr> <p>Magnitude: ${mag}</p><p>Depth: ${depth} kilometres</p>`).addTo(myMap);
     };
+
+
+    
+    let legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function () {
+    
+        let div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "LEGEND";       
+        return div;
+    };
+
+    legend.addTo(myMap);
+
+
     
 });
