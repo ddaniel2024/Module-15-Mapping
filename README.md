@@ -1,6 +1,6 @@
 # Module-15-Mapping
 
-## Visualizing USGS data with Leaflet, that will allow them to better educate the public and other government organizations (and hopefully secure more funding) on issues facing our planet.
+## Visualizing USGS data with Leaflet, that will allow them to better educate the public and other government organizations (and hopefully secure more funding) on earthquake data in locations around the world (from the last 7 days).
 
 * [For Loops in javascript](https://www.w3schools.com/js/js_loop_for.asp)
 * [Leaflet Legends](https://leafletjs.com/examples/extending/extending-3-controls.html)
